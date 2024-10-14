@@ -1,4 +1,4 @@
-name: Frontend cd workflow
+name: Frontend Continuous Deployment
 
 on:
   push:
