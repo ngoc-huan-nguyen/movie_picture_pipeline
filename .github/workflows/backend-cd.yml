@@ -141,5 +141,4 @@ jobs:
     - name: Deploy application to EKS cluster
       run: |
         cd backend/k8s
-        ls
         kustomize build | kubectl apply -f -

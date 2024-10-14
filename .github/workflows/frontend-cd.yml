@@ -102,7 +102,6 @@ jobs:
         REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL }}
       run: |
         cd frontend
-        ls
         REACT_APP_MOVIE_API_URL="http://$REACT_APP_MOVIE_API_URL"
         docker build --build-arg=REACT_APP_MOVIE_API_URL -t $REPOSITORY:$IMAGE_TAG .
 
@@ -138,8 +137,7 @@ jobs:
       env:
         REGION: ${{ secrets.AWS_REGION }}
         CLUSTER_NAME: my-cluster
-      run: |
-        aws eks update-kubeconfig --region $REGION --name $CLUSTER_NAME
+      run: aws eks update-kubeconfig --region $REGION --name $CLUSTER_NAME
 
     - name: Update image
       env:
@@ -153,5 +151,4 @@ jobs:
     - name: Deploy application to EKS cluster
       run: |
         cd frontend/k8s
-        ls
         kustomize build | kubectl apply -f -
